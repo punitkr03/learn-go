@@ -10,8 +10,6 @@ func main() {
 	fmt.Println(colors)
 	colors = append(colors, "Purple")
 	fmt.Println(colors)
-
-	colors = append(colors[1:len(colors)])
 	fmt.Println(colors)
 
 	numbers := make([]int, 4)
