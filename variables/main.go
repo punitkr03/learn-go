@@ -19,4 +19,8 @@ func main() {
 	fmt.Println("smallValue: ", smallFloat)
 	fmt.Printf("The type of smallFloat is: %T\n", smallFloat)
 
+	var smallComplex complex64 = 255.255
+	fmt.Println("smallValue: ", smallComplex)
+	fmt.Printf("The type of smallComplex is: %T\n", smallComplex)
+
 }
