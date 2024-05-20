@@ -6,11 +6,11 @@ import (
 )
 
 type course struct {
-	Name      string
-	Price     int
+	Name      string `json:"coursename"`
+	Price     int    `json:"price"`
 	Platform  string
-	Passwrord string
-	Tags      []string
+	Passwrord string `json:"-"`
+	Tags      []string `json:"tags,omitempty"`
 }
 
 func main() {
@@ -26,10 +26,12 @@ func encodeJson() {
 		{"Perl", 673, "YT", "1234", nil},
 	}
 
-	//pakage this data as json data
+	//package this data as json data
 
-	finalJson, _ := json.Marshal(demoCourses)
-
+	finalJson, err := json.MarshalIndent(demoCourses, "", "\t")
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println(string(finalJson))
 
 }
