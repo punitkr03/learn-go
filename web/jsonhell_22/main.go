@@ -9,13 +9,14 @@ type course struct {
 	Name      string `json:"coursename"`
 	Price     int    `json:"price"`
 	Platform  string
-	Passwrord string `json:"-"`
+	Passwrord string   `json:"-"`
 	Tags      []string `json:"tags,omitempty"`
 }
 
 func main() {
 	fmt.Println("JSON hell is in")
-	encodeJson()
+	// encodeJson()
+	DecodeJson()
 }
 
 func encodeJson() {
@@ -34,4 +35,37 @@ func encodeJson() {
 	}
 	fmt.Println(string(finalJson))
 
+}
+
+func DecodeJson() {
+	sampleJsonData := []byte(`
+	{
+		"coursename": "AngularJS",
+		"price": 483,
+		"Platform": "YT",
+		"tags": [
+			"gulag",
+			"dev",
+			"js"
+		]
+	}`)
+
+	var testCourse course
+
+	isValid := json.Valid(sampleJsonData)
+
+	if isValid {
+		fmt.Println("JSON data here")
+		json.Unmarshal(sampleJsonData, &testCourse)
+		fmt.Printf("%#v\n", testCourse)
+	} else {
+		fmt.Println("Invalid json")
+	}
+
+	//some cases where we just want to add some data to key value pair
+
+	var myData map[string]interface{}
+	json.Unmarshal(sampleJsonData, &myData)
+	fmt.Printf("%#v\n", myData)
+	
 }
