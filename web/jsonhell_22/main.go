@@ -67,5 +67,4 @@ func DecodeJson() {
 	var myData map[string]interface{}
 	json.Unmarshal(sampleJsonData, &myData)
 	fmt.Printf("%#v\n", myData)
-	
 }
