@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -11,9 +12,6 @@ import (
 func main() {
 	fmt.Println("Hello web")
 	greet()
-	res := sum(1, 6)
-	fmt.Println(res)
-
 	r := mux.NewRouter()
 	r.HandleFunc("/", serveHome).Methods("GET")
 
@@ -28,6 +26,8 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("<h1>Hello from router </h1>"))
 }
 
-func sum(a int, b int) int {
-	return a + b
+func getAllCourses(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Get all the courses.")
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode([]string{"course1", "course2", "course3"})
 }
